@@ -1,10 +1,37 @@
-"use client";
+import DashboardLayout from "@/components/layout";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-6">
-      <h1 className="text-4xl font-bold">Bem-vindo ao ScaleUp 🚀</h1>
-      <p className="mt-4 text-gray-600">Página inicial do projeto.</p>
-    </main>
+    <DashboardLayout>
+      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>Tarefas</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Pendentes: 2</p>
+            <p>Concluídas: 1</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Ideias</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Total: 2</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Finanças</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Saldo: R$ 1.500</p>
+          </CardContent>
+        </Card>
+      </div>
+    </DashboardLayout>
   );
 }

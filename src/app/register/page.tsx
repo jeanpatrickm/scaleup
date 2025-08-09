@@ -1,32 +1,39 @@
 "use client";
 import Link from "next/link";
 
-import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
+import { Label } from "@radix-ui/react-label";
+import { useForm } from "react-hook-form";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const { register, handleSubmit } = useForm();
 
   function onSubmit(data: unknown) {
-    console.log("Dados enviados com sucesso!", data);
+    console.log("Cadastro enviado com sucesso!", data);
   }
 
   return (
     <main className="flex items-center justify-center min-h-screen p-6">
       <div className="w-full max-w-sm">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          Login on ScaleUp 🚀
-        </h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Criar conta</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="name">Nome</Label>
+            <Input
+              id="name"
+              placeholder="digite seu nome..."
+              {...register("name")}
+            ></Input>
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
-              placeholder="Digite seu email..."
+              placeholder="digite seu email..."
               {...register("email")}
             ></Input>
           </div>
@@ -36,18 +43,18 @@ export default function LoginPage() {
             <Input
               id="password"
               type="password"
-              placeholder="Digite sua senha ..."
+              placeholder="digite sua senha..."
               {...register("password")}
             ></Input>
           </div>
 
           <Button type="submit" className="w-full cursor-pointer">
-            Entrar
+            Cadastrar
           </Button>
           <p className="text-sm text-center">
-            Ainda não tem uma conta?{" "}
-            <Link href="/register" className="text-blue-600 hover:underline">
-              Cadastre-se
+            Já possui uma conta?{" "}
+            <Link href="/login" className="text-blue-600 hover:underline">
+              Fazer Login
             </Link>
           </p>
         </form>
