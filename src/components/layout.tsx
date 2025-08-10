@@ -15,7 +15,6 @@ export default function DashboardLayout({
     { name: "Dashboard", href: "/" },
     { name: "Tarefas", href: "/tasks" },
     { name: "Ideias", href: "/ideas" },
-    { name: "Finanças", href: "/finance" },
   ];
 
   return (
