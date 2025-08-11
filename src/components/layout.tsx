@@ -12,16 +12,17 @@ export default function DashboardLayout({
   const pathname = usePathname();
 
   const menuItems = [
-    { name: "Dashboard", href: "/" },
+    { name: "Início", href: "/" },
     { name: "Tarefas", href: "/tasks" },
     { name: "Ideias", href: "/ideas" },
+    { name: "Gestão financeira", href: "/finances" },
   ];
 
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
       <aside className="w-64 bg-gray-100 border-r p-4 flex flex-col gap-2">
-        <h2 className="text-xl font-bold mb-4">ScaleUp</h2>
+        <h2 className="text-xl font-bold mb-4">ScaleUp 🚀</h2>
         {menuItems.map((item) => (
           <Link key={item.href} href={item.href}>
             <Button
