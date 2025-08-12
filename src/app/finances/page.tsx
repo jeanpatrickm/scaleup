@@ -102,8 +102,8 @@ export default function FinancesPage() {
 
   const getBankIcon = (bankName: string) => {
     const fileName = bankName
-      .normalize("NFD") // remove acentos
-      .replace(/[\u0300-\u036f]/g, "") // remove acentos unicode
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
     return `/icons/${fileName}.png`;
   };
@@ -194,32 +194,50 @@ export default function FinancesPage() {
             ) : (
               <div className="space-y-3">
                 {account.transactions.map((t) => (
-                  <Card
+                  <div
                     key={t.id}
-                    className="flex justify-between items-center p-4"
+                    className={`flex justify-between items-center p-4 rounded-lg shadow-sm border transition-all duration-200 hover:shadow-md ${
+                      t.type === "income" ? "bg-green-50" : "bg-red-50"
+                    }`}
                   >
-                    <div>
-                      <p className="font-semibold">{t.description}</p>
+                    {/* Esquerda */}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 flex items-center justify-center rounded-full ${
+                          t.type === "income" ? "bg-green-200" : "bg-red-200"
+                        }`}
+                      >
+                        {t.type === "income" ? "⬆️" : "⬇️"}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-800">
+                          {t.description}
+                        </p>
+                        <p className="text-sm text-gray-500">{t.date}</p>
+                      </div>
+                    </div>
+
+                    {/* Direita */}
+                    <div className="flex items-center gap-4">
                       <p
-                        className={
+                        className={`font-bold ${
                           t.type === "income"
                             ? "text-green-600"
                             : "text-red-600"
-                        }
+                        }`}
                       >
                         {t.type === "income" ? "+" : "-"} R${" "}
                         {t.amount.toFixed(2)}
                       </p>
-                      <p className="text-sm text-gray-500">{t.date}</p>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => deleteTransaction(account.name, t.id)}
+                      >
+                        Remover
+                      </Button>
                     </div>
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      onClick={() => deleteTransaction(account.name, t.id)}
-                    >
-                      Remover
-                    </Button>
-                  </Card>
+                  </div>
                 ))}
               </div>
             )}
